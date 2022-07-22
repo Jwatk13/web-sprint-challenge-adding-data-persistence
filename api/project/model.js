@@ -12,9 +12,9 @@ function getProjects () {
       .catch((err) => console.log(err.message))
 }
 
-function postProject (project) {
-    return db('projects')
-        .insert(project, "project_id")
+async function postProject (project) {
+   const rows =  await db('projects')
+        .insert(project)
         .then(([project_id]) => db('projects').where({ project_id }))
         .then((projects) => 
             projects.map((proj) => ({
@@ -22,6 +22,7 @@ function postProject (project) {
                 project_completed: proj.project_completed ? true : false,
             }))
         )
+    return rows[0];
 }
     
 module.exports = { getProjects, postProject }
