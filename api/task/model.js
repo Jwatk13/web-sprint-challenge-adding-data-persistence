@@ -13,12 +13,12 @@ function findTasks() {
             'pr.project_description'
         )
         .then((tasks) => 
-        tasks.map((tas) => ({
-            ...tas,
-            task_completed: tas.task_completed ? true : false,
-        }))
-      )
-      .catch((err) => console.log(err.message))
+            tasks.map((tas) => ({
+             ...tas,
+                task_completed: tas.task_completed ? true : false,
+            }))
+        )
+        .catch((err) => console.log(err.message))
 }
 
 async function insertTask(task) {
