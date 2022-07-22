@@ -17,4 +17,12 @@ server.use('*', (req, res) => {
     res.json({ api: 'up' })
 });
 
+server.use((err, req, res, next) => {
+    res.status(500).json({
+        customMessage: 'somthing went terribly wrong in the router',
+        message: err.message,
+        stack: err.stack
+    })
+}); 
+
 module.exports = server;
