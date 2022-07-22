@@ -1,7 +1,7 @@
 // build your `Project` model here
 const db = require('../../data/dbConfig');
 
-function getProjects () {
+function findProjects () {
     return db('projects')
       .then((projects) => 
         projects.map((proj) => ({
@@ -12,7 +12,7 @@ function getProjects () {
       .catch((err) => console.log(err.message))
 }
 
-async function postProject (project) {
+async function insertProject (project) {
    const rows =  await db('projects')
         .insert(project)
         .then(([project_id]) => db('projects').where({ project_id }))
@@ -25,4 +25,4 @@ async function postProject (project) {
     return rows[0];
 }
     
-module.exports = { getProjects, postProject }
+module.exports = { findProjects, insertProject }

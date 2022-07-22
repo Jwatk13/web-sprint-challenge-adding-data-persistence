@@ -3,7 +3,7 @@ const router = require('express').Router();
 const Project = require('./model');
 
 router.get('/', (req, res, next) => {
-    Project.getProjects()
+    Project.findProjects()
         .then(projects => {
             res.json(projects)
         })
@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-    Project.postProject(req.body)
+    Project.insertProject(req.body)
         .then(project => {
             res.status(201).json(project)
         })

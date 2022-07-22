@@ -1,11 +1,11 @@
 // build your `Resource` model here
 const db = require('../../data/dbConfig');
 
-function getResources() {
+function findResources() {
     return db('resources')
 }
 
-function postResource(resource) {
+function insertResource(resource) {
     return db('resources')
         .insert(resource)
         .then(([resource_id]) => {
@@ -13,4 +13,4 @@ function postResource(resource) {
         })
 }
 
-module.exports = { getResources, postResource }
+module.exports = { findResources, insertResource }
